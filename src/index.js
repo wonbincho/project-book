@@ -28,7 +28,6 @@ class Todo_list {
         newListItem.innerText = list.Text; //사용자 입력 문자를 li사이에 넣음
         this.ulElement.appendChild(newListItem); // 리스트에 새로 만든 li를 추가 -> 요소추가하기
 
-        const headerEvent = document.createElement("i");
         newListItem.addEventListener("click", () =>{
           const select = newListItem.getAttribute("id");
           this.header(select);
