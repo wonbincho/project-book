@@ -7,12 +7,11 @@ class Todo_list {
 
   add(text) {
     if (text != "") {
-      const list = {
-        id: list.length,
+      const addlist = {
+        Id: list.length,
         Text: text,
       }
-      list.push(list);
-      console.log(list);
+      list.push(addlist);
       text = "";
       this.disply();
     }
@@ -20,12 +19,14 @@ class Todo_list {
 
   disply() {
     this.ulElement.innerText = "";
+
     //forEach() 메서드는 주어진 함수를 배열 요소 각각에 대해 실행합니다.
     list.forEach((list) => {
+      const { Id, Text } = list;
       const newListItem = document.createElement('li'); // 새로운 li 요소를 만듬
       newListItem.classList.add('listItem'); // listItem 클래스를 더해줌
-      newListItem.setAttribute("id", list.id);
-      newListItem.innerText = list.Text; //사용자 입력 문자를 li사이에 넣음
+      newListItem.setAttribute("id", Id);
+      newListItem.innerText = Text; //사용자 입력 문자를 li사이에 넣음
       this.ulElement.appendChild(newListItem); // 리스트에 새로 만든 li를 추가 -> 요소추가하기
 
       newListItem.addEventListener("click", () => {
