@@ -1,4 +1,4 @@
-export const calculator = () => {
+export const Calculator = () => {
     const calculator = [];
     const screen = document.getElementsByClassName('input')[0];
 
@@ -14,101 +14,68 @@ export const calculator = () => {
     if (screen.value == '0') {
         screen.value = "";
     }
+
     result_btn.addEventListener('click', () => {
-        count = 0;
-        console.log(calculator[calculator.length - 1]);
-        if (calculator[calculator.length - 1] == '+') {
-            result = Number(result) + Number(screen.value);
-            screen.value = result;
-        }
-        else if (calculator[calculator.length - 1] == '-') {
-            result = Number(result) - Number(screen.value);
-            screen.value = result;
-        }
-        else if (calculator[calculator.length - 1] == '*') {
-            console.log(result);
-            console.log(screen.value);
-            result = Number(result) * Number(screen.value);
-            screen.value = result;
-        }
-        else if (calculator[calculator.length - 1] == '/') {
-            result = Number(result) / Number(screen.value);
-            screen.value = result;
-        }
-        else if (calculator[calculator.length - 1] == '%') {
-            result = Number(result) % Number(screen.value);
-            screen.value = result;
+        if (count == 1) {
+            calculate(calculator.length - 1);
+            count = 2;
         }
     })
-    clear.addEventListener('click', () => {
-        console.log('cls_btn');
-        screen.value = '';
-        calculator.length = 0;
-    })
+
     for (let i = 0; i < number.length; i++) {
         number[i].addEventListener('click', () => {
             let value = number[i].value;
-            if (count == 0) screen.value = '';
+            let len = 0;
+            if (count == 0) {
+                screen.value = '';
+                len = calculator.length;
+            }
             screen.value = screen.value + value;
+            calculator[len] = screen.value;
+            if (len == 0) result = screen.value
             count = 1;
-
         })
     }
     for (let i = 0; i < cal.length; i++) {
         cal[i].addEventListener('click', () => {
-            if (count == 1) {
-                let value = cal[i].value;
-                let pre_value = screen.value;
-                calculator.push(screen.value);
-                calculator.push(value);
-                screen.value = '';
-                if (calculator.length == 4) {
-                    if (calculator[1] == '+') {
-                        result = Number(calculator[0]) + Number(calculator[2]);
-                        screen.value = result;
-                    }
-                    else if (calculator[1] == '-') {
-                        result = Number(calculator[0]) - Number(calculator[2]);
-                        screen.value = result;
-                    }
-                    else if (calculator[1] == '*') {
-                        result = Number(calculator[0]) * Number(calculator[2]);
-                        screen.value = result;
-                    }
-                    else if (calculator[1] == '/') {
-                        result = Number(calculator[0]) / Number(calculator[2]);
-                        screen.value = result;
-                    }
-                    else if (calculator[1] == '%') {
-                        result = Number(calculator[0]) % Number(calculator[2]);
-                        screen.value = result;
-                    }
-                }
-                else if (calculator.length > 4) {
-                    if (value == '+') {
-                        result = Number(result) + Number(pre_value);
-                        screen.value = result;
-                    }
-                    else if (value = '-') {
-                        result = Number(result) - Number(pre_value);
-                        screen.value = result;
-                    }
-                    else if (value = '*') {
-                        result = Number(result) * Number(pre_value);
-                        screen.value = result;
-                    }
-                    else if (value = '/') {
-                        result = Number(result) / Number(pre_value);
-                        screen.value = result;
-                    }
-                    else if (value = '%') {
-                        result = Number(result) % Number(pre_value);
-                        screen.value = result;
-                    }
-                }
+            if (count == 1 || count == 2) {
+                calculator[calculator.length] = cal[i].value
+                if (calculator.length > 2 && count != 2) calculate(calculator.length - 2);
             }
             count = 0;
         })
+
+        clear.addEventListener('click', () => {
+            console.log('cls_btn');
+            screen.value = '';
+            calculator.length = 0;
+        })
+    }
+
+    const calculate = (len) => {
+
+        console.log(calculator);
+        console.log(len, len - 1, len - 2, len - 3);
+        if (calculator[len - 1] == '+') {
+            result = Number(result) + Number(calculator[len]);
+            screen.value = result;
+        }
+        else if (calculator[len - 1] == '-') {
+            result = Number(result) - Number(calculator[len]);
+            screen.value = result;
+        }
+        else if (calculator[len - 1] == '*') {
+            result = Number(result) * Number(calculator[len]);
+            screen.value = result;
+        }
+        else if (calculator[len - 1] == '/') {
+            result = Number(result) / Number(calculator[len]);
+            screen.value = result;
+        }
+        else if (calculator[len - 1] == '%') {
+            result = Number(result) % Number(calculator[len]);
+            screen.value = result;
+        }
     }
 }
-calculator();
+Calculator();
