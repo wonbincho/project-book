@@ -6,7 +6,8 @@
   "author": "전솔 <jeonsol12@naver.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server --config ./config/webpack.config.development.js",
+    "dev": "webpack-dev-server --config ./config/webpack.config.development.js --env.isEslint=false",
+    "eslint": "webpack-dev-server --config ./config/webpack.config.development.js --env.isEslint=true",
     "prebuild": "rimraf dist",
     "build": "cross-env NODE_ENV=production webpack -p --config ./config/webpack.config.production.js"
   },
@@ -21,5 +22,12 @@
     "webpack": "^4.39.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.8.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.18.0",
+    "eslint-config-naver": "^2.1.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.22.1"
   }
 }
