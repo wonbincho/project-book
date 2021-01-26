@@ -1,0 +1,41 @@
+{
+  "env": {
+    "es6": true
+  },
+  "extends": [
+    "naver"
+  ],
+  "rules": {
+    "no-script-url": "off",
+    "no-console": "off",
+    "no-extra-boolean-cast": "off",
+    "no-useless-escape": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 200
+      }
+    ],
+    "no-else-return": "off",
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "array-element-newline": [
+      "error",
+      "consistent"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-dynamic-require": 0,
+    "semi": 0,
+    "no-loop-func": 0,
+  },
+  "parser": "babel-eslint" // 추가
+}
