@@ -1,5 +1,5 @@
 export const a = () => {
-  console.log('hi');
+  console.log('gggggggggggggggggg');
 }
 
 a();
